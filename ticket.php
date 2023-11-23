@@ -54,13 +54,13 @@ if(isset($_POST['btn_refresh'])){
 	echo "<meta http-equiv='refresh' content='0;url='>";
 }
 
-if(isset($_POST['btn_reprint'])){
-	if(empty($idtr) || $idtr == ''){
-	echo "<script>alert('Silahkan pilih No Bill/ Transaksi terlebih dahulu sebelum melakukan Reprint');window.history.back(-1)</script>";		
-	}else{
-	header("location:ticket_reprint.php?id=$idtr");
-	}
-}
+// if(isset($_POST['btn_reprint'])){
+// 	if(empty($idtr) || $idtr == ''){
+// 	echo "<script>alert('Silahkan pilih No Bill/ Transaksi terlebih dahulu sebelum melakukan Reprint');window.history.back(-1)</script>";		
+// 	}else{
+// 	header("location:ticket_reprint.php?id=$idtr");
+// 	}
+// }
 
 if(isset($_POST['btn_void'])){
 	if(empty($idtr) || $idtr == ''){
@@ -362,7 +362,7 @@ if(isset($_POST['btn_void'])){
   <div class="clear"></div>
   <div>
     <input name="btn_refresh" type="submit" class="btn_ticket" id="submit" value="Refresh" />
-    <input name="btn_reprint" type="submit" class="btn_ticket" id="submit3" value="RePrint" />
+    <input name="btn_reprint" type="submit" disable class="btn_ticket" id="submit3" value="RePrint" disabled="disabled" />
 <input name="btn_void" type="submit" class="btn_ticket" id="submit2" value="Refund" onclick="javascript:return confirm('Are you sure want to void this transaction ?')"/>
   </div>
 </div>
