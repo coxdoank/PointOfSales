@@ -1,0 +1,21 @@
+PENTING!!!
+- set folder path aplikasi pada file setParamApp.txt
+- set folder path mysql pada file setParamMySQL.txt
+
+TRUNCATE drawer_balance;
+TRUNCATE th_ticket;
+TRUNCATE th_ticket_item;
+TRUNCATE ticket;
+TRUNCATE ticket_item;
+TRUNCATE `transaction`;
+UPDATE terminal SET no_transaction = 0 WHERE terminal = 'POS 01'
+
+Setting Tambahan Disable Dialog Print Browser
+Google Chrome
+menghilangkan dialog print	: --kiosk-printing
+mode full kiosk			: --kiosk
+
+Mozilla Firefox
+about:config
+search "print.always_print_silent"
+set true

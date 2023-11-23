@@ -1,0 +1,25 @@
+@charset "utf-8";
+/* CSS Document */
+
+@font-face {
+  font-family: "MyriadPro-Regular";
+  src: url("../fonts/MyriadPro-Regular.eot");
+  src: url("../fonts/MyriadPro-Regular.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/MyriadPro-Regular.woff") format("woff"),
+    url("../fonts/MyriadPro-Regular.ttf") format("truetype"),
+    url("../fonts/MyriadPro-Regular.svg#cabinregular") format("svg");
+  /* src: url('../fonts/MyriadPro-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/MyriadPro-Regular.woff') format('woff'),
+        url('../fonts/MyriadPro-Regular.ttf') format('truetype'),
+        url('../fonts/MyriadPro-Regular.svg#cabinregular') format('svg');          */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "digital-7regular";
+  src: url("../fonts/digital-7-webfont.woff2") format("woff2"),
+    url("../fonts/digital-7-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}

@@ -1,0 +1,1 @@
+mysql -uroot -pmysql -e "truncate table drawer_balance; truncate table ticket; truncate table ticket_item; truncate table transaction;" db_pos

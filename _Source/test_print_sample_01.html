@@ -1,0 +1,26 @@
+<html>
+<head>
+<script language="javascript" type="text/javascript">
+
+function PrintMeSubmitMe()
+{
+var popupWin = window.open('', '_blank', 'width=300,height=300');	
+window.print();
+popupWin.window.close();
+SubmitMe();
+window.location.href=('http://localhost/POS/source');
+}
+
+function SubmitMe()
+{
+document.MyForm.submit();
+}
+</script>
+</head>
+<body>
+<form name="MyForm" action="somepage.asp" method="post">
+<input type="button" value="Submit - No Print" onclick="SubmitMe()"><br />
+<input type="button" value="Submit - And Print" onclick="PrintMeSubmitMe(this)"><br />
+</form>
+</body>
+</html>

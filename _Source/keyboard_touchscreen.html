@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="Content-Script-Type" content="text/javascript">
+<meta name="Content-Style-Type" content="text/css">
+<title>Touchscreen</title>
+<style type='text/css'>
+.touch {
+	border: 1px solid #666;
+	font-family: "Segoe UI", "Segoe UI Semibold";
+	font-size: 18px;
+	background-color: #FFFFFF;
+	color: #333;
+	width: 50px;
+	height: 50px;
+	margin: 2px;
+	border-radius: 5px;
+	}
+#touchDiv,fieldset {text-align:center;}
+</style>
+<script type='text/javascript'>
+function addIt(cKey)
+{
+d = document.forms["foo"].elements["bar"];
+d.value =  (cKey.value=='backspace') ? d.value.slice(0,-1) : d.value+cKey.value;
+}
+</script>
+</head>
+<body>
+<div id='touchDiv'>
+<INPUT class=touch type=button value=q onClick="addIt(this)"><INPUT class=touch type=button value=w onClick="addIt(this)"><INPUT class=touch type=button value=e onClick="addIt(this)"><INPUT class=touch type=button value=r onClick="addIt(this)"><INPUT class=touch type=button value=t onClick="addIt(this)"><INPUT class=touch type=button value=y onClick="addIt(this)"><INPUT class=touch type=button value=u onClick="addIt(this)"><INPUT class=touch type=button value=i onClick="addIt(this)"><INPUT class=touch type=button value=o onClick="addIt(this)"><INPUT class=touch type=button value=p onClick="addIt(this)"><input type='button' value=backspace onClick="addIt(this)" style='width:100px' class='touch'><BR>
+<INPUT class=touch type=button value=a onClick="addIt(this)"><INPUT class=touch type=button value=s onClick="addIt(this)"><INPUT class=touch type=button value=d onClick="addIt(this)"><INPUT class=touch type=button value=f onClick="addIt(this)"><INPUT class=touch type=button value=g onClick="addIt(this)"><INPUT class=touch type=button value=h onClick="addIt(this)"><INPUT class=touch type=button value=j onClick="addIt(this)"><INPUT class=touch type=button value=k onClick="addIt(this)"><INPUT class=touch type=button value=l onClick="addIt(this)"><BR>
+<INPUT class=touch type=button value=z onClick="addIt(this)"><INPUT class=touch type=button value=x onClick="addIt(this)"><INPUT class=touch type=button value=c onClick="addIt(this)"><INPUT class=touch type=button value=v onClick="addIt(this)"><INPUT class=touch type=button value=b onClick="addIt(this)"><INPUT class=touch type=button value=n onClick="addIt(this)"><INPUT class=touch type=button value=m onClick="addIt(this)"><BR>
+<input type='button' value=' ' onClick="addIt(this)" style='width:280px' class='touch'>
+</div>
+<div><form name="foo" action=''><fieldset><legend>The Input</legend><input type='text' name="bar"></fieldset></form></div>
+</body>
+</html>
