@@ -362,7 +362,7 @@ if(isset($_POST['btn_void'])){
   <div class="clear"></div>
   <div>
     <input name="btn_refresh" type="submit" class="btn_ticket" id="submit" value="Refresh" />
-    <input name="btn_reprint" type="submit" disable class="btn_ticket" id="submit3" value="RePrint" disabled="disabled" />
+    <input name="btn_reprint" type="submit" class="btn_ticket" id="submit3" value="RePrint" disabled="disabled" />
 <input name="btn_void" type="submit" class="btn_ticket" id="submit2" value="Refund" onclick="javascript:return confirm('Are you sure want to void this transaction ?')"/>
   </div>
 </div>
