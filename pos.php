@@ -662,7 +662,7 @@ function closeWin() {
         <div>Rp
           <?php $item_price = number_format($rwitem['ITEM_PRICE']); echo "$item_price"; ?>
         </div></td>
-      <td class="label_header"></a><a href="<?php echo"pos.php?id=$id&act=minitem&no=$rwitem[NO_TRANSACTION]&idm=$rwitem[ID]" ?>" class="pos-qty-box">-</a><a class="pos-qty-box"><?php echo"$rwitem[ITEM_COUNT]" ?></a><a href="<?php echo"pos.php?id=$id&act=additem&no=$rwitem[NO_TRANSACTION]&idm=$rwitem[ID]" ?>" class="pos-qty-box">+</a></td>
+      <td class="label_header"></a><a href="<?php echo"pos.php?id=$id&act=minitem&no=$rwitem[NO_TRANSACTION]&idm=$rwitem[ID]" ?>" class="pos-qty-box">-</a><a href="<?php echo"pos_menu_qty.php?id=$id&no=$rwitem[NO_TRANSACTION]&idm=$rwitem[ID]" ?>" class="pos-qty-box"><?php echo"$rwitem[ITEM_COUNT]" ?></a><a href="<?php echo"pos.php?id=$id&act=additem&no=$rwitem[NO_TRANSACTION]&idm=$rwitem[ID]" ?>" class="pos-qty-box">+</a></td>
       <td class="label_header">Rp <?php $total_price = number_format($rwitem['TOTAL_PRICE']); echo "$total_price"; ?></td>
       <td align="center"><a href="<?php echo"?act=del&id=$id&idm=$rwitem[ID]" ?>"><img src="content/images/btn-delete.png" width="35" height="35"  style="border:0;" /></a></td>
     </tr>

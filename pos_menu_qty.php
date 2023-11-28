@@ -54,7 +54,6 @@ if(isset($_POST['submit'])) {
 				);
 				
 	UpdateData($table_name_01, $form_data_01, "WHERE NO_TRANSACTION = '$no' and TERMINAL = '$terminal'");
-		
 	header("location:pos.php?id=$id");
 	}
 }
@@ -63,8 +62,10 @@ if(isset($_POST['submit'])) {
 $query_titem = "select * from ticket_item where ID = '$idm'";
 $query_titem = mysqli_query($connection,$query_titem);
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"> -->
+<!doctype html>
+<html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Untitled Document</title>
@@ -138,29 +139,15 @@ $query_titem = mysqli_query($connection,$query_titem);
 }
 </style>
 <link href="content/css/stylesheet.css" rel="stylesheet" type="text/css" />
+
+<script type='text/javascript'>
+function addIt(cKey) { d = document.forms[0].elements["code"]; d.value =  (cKey.value=='<') ? d.value.slice(0,-1) : ((cKey.value=='clear') ? "" : d.value+cKey.value); }
+</script>
+
 </head>
 
 <body>
-</head>
-
-<body><!-- onload="emptyCode(); -->
-<script type="text/javascript">
-function addCode(key){
-	var code = document.forms[1].code;
-		code.value = code.value + key;
-}
-
-function submitForm(){
-	document.forms[0].submit();
-}
-
-function emptyCode(){
-	document.forms[0].code.value = "<?php echo"$rwitem[ITEM_COUNT]" ?>";
-}
-
-</script>
 <div class="divCenter">
-<center>
 <form id="login" method="post" action="">
   <table width="100%" cellspacing="5">
     <tr>
@@ -198,34 +185,24 @@ function emptyCode(){
         <?php } ?>
       </table></td>
       <td><table width="180">
-        <tr>
+        <!-- <tr>
           <td colspan="3" align="center"><input type="text" name="code" value="" maxlength="4" class="lcd" /></td>
-        </tr>
+        </tr> -->
         <tr>
-          <td align="center"><input name="code" type="button" onClick="addCode('1');" class="btn_login" id="code" value="1" /></td>
-          <td align="center"><input name="btn02" type="button" onClick="addCode('2');"class="btn_login" id="btn02" value="2" /></td>
-          <td align="center"><input name="btn03" type="button" onClick="addCode('3');"class="btn_login" id="btn03" value="3" /></td>
-        </tr>
-        <tr>
-          <td align="center"><input name="btn04" type="button" onClick="addCode('4');"class="btn_login" id="btn04" value="4" /></td>
-          <td align="center"><input name="btn05" type="button" onClick="addCode('5');"class="btn_login" id="btn05" value="5" /></td>
-          <td align="center"><input name="btn06" type="button" onClick="addCode('6');"class="btn_login" id="btn06" value="6" /></td>
-        </tr>
-        <tr>
-          <td align="center"><input name="btn07" type="button" onClick="addCode('7');"class="btn_login" id="btn07" value="7" /></td>
-          <td align="center"><input name="btn08" type="button" onClick="addCode('8');"class="btn_login" id="btn08" value="8" /></td>
-          <td align="center"><input name="btn09" type="button" onClick="addCode('9');"class="btn_login" id="btn09" value="9" /></td>
-        </tr>
-        <tr>
-          <td align="center"><input name="btn_clear" type="button" onClick="window.location.href='pos.php'" class="btn_back" id="btn_clear" value="&lt;" /></td>
-          <td align="center"><input name="btn00" type="button" onClick="addCode('0');"class="btn_login" id="btn00" value="0" /></td>
-          <td align="center"><input name="submit" type="submit" class="btn_save" id="submit" value="Save" /></td>
+			<center>
+			<input type='text' class=lcd size=12 name="code" style='width:200px'>
+			<br>
+			<INPUT class=button type=button value=1 onClick="addIt(this)"><INPUT class=button type=button value=2 onClick="addIt(this)"><INPUT class=button type=button value=3 onClick="addIt(this)"><BR>
+			<INPUT class=button type=button value=4 onClick="addIt(this)"><INPUT class=button type=button value=5 onClick="addIt(this)"><INPUT class=button type=button value=6 onClick="addIt(this)"><BR>
+			<INPUT class=button type=button value=7 onClick="addIt(this)"><INPUT class=button type=button value=8 onClick="addIt(this)"><INPUT class=button type=button value=9 onClick="addIt(this)"><BR>
+			<INPUT class=button type=button value=0 onClick="addIt(this)"><br><INPUT class=button type=button value=< onClick="addIt(this)"><!-- <INPUT class=button type=button value=+ onClick="addIt(this)"> -->
+			<!--<input class=button type='button' value=clear onClick="addIt(this)" style='width:100px'>--><input name='submit' type='submit' class=button id='submit' value=Save style='width:120px; background-color:#009900'><BR>
+			</center>          
         </tr>
         </table></td>
     </tr>
   </table>
 </form>
-</center>
 </div>
 </body>
 </html>

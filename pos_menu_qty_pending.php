@@ -3,17 +3,24 @@ include "connection/connDB.php";
 include "connection/function.php";
 include "login_session.php";
 
-$mod	= $_GET['mod'] ? $_GET['mod'] : 'trans';
-$act	= $_GET['act'];
-$cat	= $_GET['cat'];
-$id	 	= $_GET['id'];
-$idm	= $_GET['idm'];
-$no		= $_GET['no']; //no transaksi
+// $mod	= $_GET['mod'] ? $_GET['mod'] : 'trans';
+// $act	= $_GET['act'];
+// $cat	= $_GET['cat'];
+// $id	 	= $_GET['id']; //daftar menu
+// $idm	= $_GET['idm'];
+// $no		= $_GET['no']; //no transaksi
+
+$mod	= isset($_GET['mod']) ? $_GET['mod'] : 'trans';
+$act	= isset($_GET['act']) ? $_GET['act'] : '';
+$cat	= isset($_GET['cat']) ? $_GET['cat'] : '';
+$id	 	= isset($_GET['id']) ? $_GET['id'] : '';
+$idm	= isset($_GET['idm']) ? $_GET['idm'] : '';
+$no		= isset($_GET['no']) ? $_GET['no'] : '';
 
 $query = "select * from ticket_item tic where tic.ID = '$idm'";
 //print_r($query);
-$query = mysql_query($query);
-$row  = mysql_fetch_array($query);
+$query = mysqli_query($connection,$query);
+$row  = mysqli_fetch_array($query);
 $xqty = $row['ITEM_COUNT'];
 
 if(isset($_POST['submit'])) {
@@ -32,27 +39,28 @@ else
 	$table_name = "ticket_item";
 	UpdateData($table_name, $form_data, "WHERE ID = '$idm'");
 	
-	$query02 = mysql_query("select 
-							sum(ttm.TOTAL_PRICE) as AMOUNT
-							from ticket_item ttm
-							where 
-							ttm.TERMINAL = '$terminal' and 
-							ttm.NO_TRANSACTION = '$no'");
-	$rwamount = mysql_fetch_array($query02);
+	$query02 = "select 
+				sum(ttm.TOTAL_PRICE) as AMOUNT
+				from ticket_item ttm
+				where 
+				ttm.TERMINAL = '$terminal' and 
+				ttm.NO_TRANSACTION = '$no'";
+	$query02 = mysqli_query($connection,$query02);
+	$rwamount = mysqli_fetch_array($query02);
 	
-	$table_name01 = "ticket";
-	$form_data01 = array(
+	$table_name_01 = "ticket";
+	$form_data_01 = array(
 				'AMOUNT' => $rwamount['AMOUNT']
 				);
 				
-	UpdateData($table_name01, $form_data01, "WHERE TERMINAL = '$terminal' and NO_TRANSACTION = '$no'");	
+	UpdateData($table_name_01, $form_data_01, "WHERE TERMINAL = '$terminal' and NO_TRANSACTION = '$no'");	
 	header("location:pos_pending.php?no=$no&id=$id");
 }
 }
 
 //list ticket item 
 $query_titem = "select * from ticket_item where ID = '$idm'";
-$query_titem = mysql_query($query_titem);
+$query_titem = mysqli_query($connection,$query_titem);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -129,45 +137,20 @@ $query_titem = mysql_query($query_titem);
 }
 </style>
 <link href="content/css/stylesheet.css" rel="stylesheet" type="text/css" />
-<script src="content/js/jquery.min.js"></script>
-<script type="text/javascript">
-$(window).load(function() {
-	$(".loader").fadeOut("slow");
-})
+
+<script type='text/javascript'>
+function addIt(cKey) { d = document.forms[0].elements["code"]; d.value =  (cKey.value=='<') ? d.value.slice(0,-1) : ((cKey.value=='clear') ? "" : d.value+cKey.value); }
 </script>
+
 </head>
 
 <body>
-</head>
-
-<body onload="emptyCode();">
-<script type="text/javascript">
-function addCode(key){
-	var code = document.forms[0].code;
-	if(code.value.length < 5){
-		code.value = code.value + key;
-	}
-	if(code.value.length == 5){
-		setTimeout(submitForm,1000);	
-	}
-}
-
-function submitForm(){
-	document.forms[0].submit();
-}
-
-function emptyCode(){
-	document.forms[0].code.value = "<?php echo"$rwitem[ITEM_COUNT]" ?>";
-}
-
-</script>
 <div class="divCenter">
-<center>
 <form id="login" method="post" action="">
   <table width="100%" cellspacing="5">
     <tr>
       <td valign="middle"><table width="230" class="table-model-01">
-      <?php while($rwitem = mysql_fetch_array($query_titem)){ ?>
+      <?php while($rwitem = mysqli_fetch_array($query_titem)){ ?>
         <tr class="text_content">
           <td colspan="3" class="text_header"><p align="center"><strong>Item</strong></p></td>
         </tr>
@@ -200,34 +183,24 @@ function emptyCode(){
         <?php } ?>
       </table></td>
       <td><table width="180">
-        <tr>
+        <!-- <tr>
           <td colspan="3" align="center"><input type="text" name="code" value="" maxlength="4" class="lcd" /></td>
-        </tr>
+        </tr> -->
         <tr>
-          <td align="center"><input name="btn01" type="button" onclick="addCode('1');" class="btn_login" id="1" value="1" /></td>
-          <td align="center"><input name="btn02" type="button" onclick="addCode('2');"class="btn_login" id="btn02" value="2" /></td>
-          <td align="center"><input name="btn03" type="button" onclick="addCode('3');"class="btn_login" id="btn03" value="3" /></td>
-        </tr>
-        <tr>
-          <td align="center"><input name="btn04" type="button" onclick="addCode('4');"class="btn_login" id="btn04" value="4" /></td>
-          <td align="center"><input name="btn05" type="button" onclick="addCode('5');"class="btn_login" id="btn05" value="5" /></td>
-          <td align="center"><input name="btn06" type="button" onclick="addCode('6');"class="btn_login" id="btn06" value="6" /></td>
-        </tr>
-        <tr>
-          <td align="center"><input name="btn07" type="button" onclick="addCode('7');"class="btn_login" id="btn07" value="7" /></td>
-          <td align="center"><input name="btn08" type="button" onclick="addCode('8');"class="btn_login" id="btn08" value="8" /></td>
-          <td align="center"><input name="btn09" type="button" onclick="addCode('9');"class="btn_login" id="btn09" value="9" /></td>
-        </tr>
-        <tr>
-          <td align="center"><input name="btn_clear" type="reset" class="btn_back" id="btn_clear" value="&lt;" /></td>
-          <td align="center"><input name="btn00" type="button" onclick="addCode('0');"class="btn_login" id="btn00" value="0" /></td>
-          <td align="center"><input name="submit" type="submit" class="btn_save" id="submit" value="Save" /></td>
+			<center>
+			<input type='text' class=lcd size=12 name="code" style='width:200px'>
+			<br>
+			<INPUT class=button type=button value=1 onClick="addIt(this)"><INPUT class=button type=button value=2 onClick="addIt(this)"><INPUT class=button type=button value=3 onClick="addIt(this)"><BR>
+			<INPUT class=button type=button value=4 onClick="addIt(this)"><INPUT class=button type=button value=5 onClick="addIt(this)"><INPUT class=button type=button value=6 onClick="addIt(this)"><BR>
+			<INPUT class=button type=button value=7 onClick="addIt(this)"><INPUT class=button type=button value=8 onClick="addIt(this)"><INPUT class=button type=button value=9 onClick="addIt(this)"><BR>
+			<INPUT class=button type=button value=0 onClick="addIt(this)"><br><INPUT class=button type=button value=< onClick="addIt(this)"><!-- <INPUT class=button type=button value=+ onClick="addIt(this)"> -->
+			<!--<input class=button type='button' value=clear onClick="addIt(this)" style='width:100px'>--><input name='submit' type='submit' class=button id='submit' value=Save style='width:120px; background-color:#009900'><BR>
+			</center>          
         </tr>
         </table></td>
     </tr>
   </table>
 </form>
-</center>
 </div>
 </body>
 </html>
