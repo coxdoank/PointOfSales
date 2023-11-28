@@ -6,7 +6,7 @@ include "login_session.php";
 $mod	= isset($_GET['mod']) ? $_GET['mod'] : '';
 $act	= isset($_GET['act']) ? $_GET['act'] : '';
 $cat	= isset($_GET['cat']) ? $_GET['cat'] : '';
-$id	 	= isset($_GET['id']) ? $_GET['id'] : 1;
+$id	= isset($_GET['id']) ? $_GET['id'] : 1;
 $idm	= isset($_GET['idm']) ? $_GET['idm'] : '';
 $idtr	= isset($_POST['idtr']) ? $_POST['idtr'] : '';
 
@@ -19,7 +19,7 @@ $rwakses = mysqli_fetch_array($qakses);
 //query list ticket
 $query_ticket = "select * from ticket tkt
 left join transaction trs on trs.ID_TRANSACTION = tkt.ID_TRANSACTION
-where tkt.TERMINAL = '$terminal' and trs.FLAG = 'N' and tkt.STATUS = 'COMPLETE'
+where tkt.TERMINAL = '$terminal' and trs.FLAG = 'N' and tkt.STATUS in ('COMPLETE','VOID')
 order by tkt.ID desc limit $dataPerPage";
 $query_ticket = mysqli_query($connection,$query_ticket);
 

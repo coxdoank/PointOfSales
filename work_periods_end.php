@@ -74,8 +74,8 @@ if(isset($_POST['btn_end'])){
 	mysqli_query($connection,"INSERT INTO th_ticket_item (TERMINAL,ITEM_ID,ITEM_COUNT,ITEM_NAME,CATEGORY_NAME,ITEM_PRICE,DISCOUNT_RATE,SUB_TOTAL,DISCOUNT,TAX_AMOUNT,TOTAL_PRICE,NO_TRANSACTION,SYNC)
 	SELECT TERMINAL,ITEM_ID,ITEM_COUNT,ITEM_NAME,CATEGORY_NAME,ITEM_PRICE,DISCOUNT_RATE,SUB_TOTAL,DISCOUNT,TAX_AMOUNT,TOTAL_PRICE,NO_TRANSACTION,SYNC FROM ticket_item");
 	
-	mysqli_query($connection,"DELETE FROM ticket");
-	mysqli_query($connection,"DELETE FROM ticket_item");
+	// mysqli_query($connection,"DELETE FROM ticket");
+	// mysqli_query($connection,"DELETE FROM ticket_item");
 
 	//baca parameter folder mysql bin
 	$myfile = fopen("setParamMySQL.txt", "r") or die("Unable to open file!");

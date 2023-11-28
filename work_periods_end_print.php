@@ -104,10 +104,13 @@ from
 	sum(tic.AMOUNT) as a
 	from ticket tic
 	left join transaction trs on trs.ID_TRANSACTION = tic.ID_TRANSACTION
-	where tic.TERMINAL = '$terminal' and trs.FLAG = 'N' and tic.STATUS = 'COMPLETE'
+	where tic.TERMINAL = '$terminal' and trs.FLAG = 'N' and tic.STATUS in ('COMPLETE','VOID')
 ) x";
 $qdetail = mysqli_query($connection,$qdetail);
 $rwdtl = mysqli_fetch_array($qdetail);
+
+mysqli_query($connection,"DELETE FROM ticket");
+mysqli_query($connection,"DELETE FROM ticket_item");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
